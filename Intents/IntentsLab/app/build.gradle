@@ -1,0 +1,27 @@
+apply plugin: 'android'
+
+android {
+    compileSdkVersion 18
+    buildToolsVersion "19.0.0"
+
+    defaultConfig {
+        minSdkVersion 13
+        targetSdkVersion 18
+
+        testPackageName "course.labs.intentslab.test"
+        testInstrumentationRunner "android.test.InstrumentationTestRunner"
+    }
+
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+    instrumentTestCompile 'com.jayway.android.robotium:robotium-solo:4.3.1'
+    compile files('D:/Programming/Android/Intents/IntentsLab/robotium-solo-5.0.1.jar')
+    compile files('libs/robotium-solo-5.0.2-SNAPSHOT.jar')
+}
