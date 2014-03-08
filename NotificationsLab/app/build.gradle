@@ -1,0 +1,28 @@
+apply plugin: 'android'
+
+android {
+    compileSdkVersion 18
+    buildToolsVersion '19.0.0'
+
+    defaultConfig {
+        minSdkVersion 13
+        targetSdkVersion 19
+
+        testPackageName "course.labs.notificationslab.test"
+        testInstrumentationRunner "android.test.InstrumentationTestRunner"
+    }
+
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+    androidTestCompile 'com.android.support:support-v4:+'
+    androidTestCompile 'com.jayway.android.robotium:robotium-solo:4.3.1'
+    compile files('libs/android-support-v4.jar')
+    compile files('libs/robotium-solo-5.0.2-SNAPSHOT.jar')
+}
