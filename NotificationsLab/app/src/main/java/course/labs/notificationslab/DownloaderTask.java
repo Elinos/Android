@@ -1,5 +1,6 @@
 package course.labs.notificationslab;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -8,6 +9,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.util.Log;
 import android.widget.RemoteViews;
 
@@ -83,7 +85,7 @@ public class DownloaderTask extends AsyncTask<String, Void, String[]> {
                 }
 
                 String readLine;
-                StringBuffer buf = new StringBuffer();
+                StringBuilder buf = new StringBuilder();
 
                 while ((readLine = in.readLine()) != null) {
                     buf.append(readLine);
@@ -91,9 +93,7 @@ public class DownloaderTask extends AsyncTask<String, Void, String[]> {
 
                 mFeeds[idx] = buf.toString();
 
-                if (null != in) {
-                    in.close();
-                }
+                in.close();
             }
 
             downloadCompleted = true;
@@ -156,6 +156,7 @@ public class DownloaderTask extends AsyncTask<String, Void, String[]> {
                     final String failMsg = "Download has failed. Please retry Later.";
                     final String successMsg = "Download completed successfully.";
 
+                    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
                     @Override
                     public void onReceive(Context context, Intent intent) {
 

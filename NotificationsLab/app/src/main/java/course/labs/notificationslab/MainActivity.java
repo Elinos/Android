@@ -37,7 +37,6 @@ public class MainActivity extends Activity implements SelectionListener {
     private static final int UNSELECTED = -1;
     private int mFeedSelected = UNSELECTED;
     private FragmentManager mFragmentManager;
-    private FriendsFragment mFriendsFragment;
     private boolean mIsFresh;
     private BroadcastReceiver mRefreshReceiver;
     private FeedFragment mFeedFragment;
@@ -63,7 +62,7 @@ public class MainActivity extends Activity implements SelectionListener {
     // Add Friends Fragment to Activity
     private void addFriendsFragment() {
 
-        mFriendsFragment = new FriendsFragment();
+        FriendsFragment mFriendsFragment = new FriendsFragment();
         mFriendsFragment.setArguments(getIntent().getExtras());
 
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
@@ -134,7 +133,6 @@ public class MainActivity extends Activity implements SelectionListener {
 
     }
 
-    ;
 
     // Called when a Friend is clicked on
     @Override
@@ -223,7 +221,7 @@ public class MainActivity extends Activity implements SelectionListener {
             JSONArray tmp = JSONFeeds[i];
 
             // string buffer for twitter feeds
-            StringBuffer tweetRec = new StringBuffer("");
+            StringBuilder tweetRec = new StringBuilder("");
 
             for (int j = 0; j < tmp.length(); j++) {
                 try {
@@ -236,7 +234,7 @@ public class MainActivity extends Activity implements SelectionListener {
                     e.printStackTrace();
                 }
 
-                tweetRec.append(name + " - " + tweet + "\n\n");
+                tweetRec.append(name).append(" - ").append(tweet).append("\n\n");
             }
 
             mProcessedFeeds[i] = tweetRec.toString();
@@ -253,7 +251,7 @@ public class MainActivity extends Activity implements SelectionListener {
         try {
             FileInputStream fis = openFileInput(TWEET_FILENAME);
             reader = new BufferedReader(new InputStreamReader(fis));
-            String s = null;
+            String s;
             int i = 0;
             while (null != (s = reader.readLine()) && i < NUM_FRIENDS) {
                 mRawFeeds[i] = s;
