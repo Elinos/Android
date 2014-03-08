@@ -21,5 +21,5 @@ android {
 }
 
 dependencies {
-    instrumentTestCompile 'com.jayway.android.robotium:robotium-solo:5.0.1'
+    androidTestCompile 'com.jayway.android.robotium:robotium-solo:5.0.1'
 }
